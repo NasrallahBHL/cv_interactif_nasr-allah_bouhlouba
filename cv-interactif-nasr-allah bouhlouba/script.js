@@ -1,29 +1,25 @@
-// Code JavaScript très simple pour rendre la page un peu interactive
+document.getElementById("btnVoirPlus").addEventListener("click", function () {
+  const texte = document.getElementById("textePlus");
+  texte.classList.toggle("d-none");
 
-document.addEventListener("DOMContentLoaded", function () {
+  if (texte.classList.contains("d-none")) {
+    this.textContent = "Voir plus";
+  } else {
+    this.textContent = "Voir moins";
+  }
+});
 
-  var btnVoirPlus = document.getElementById("btnVoirPlus");
-  var textePlus = document.getElementById("textePlus");
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  alert("Message envoyé !");
+});
 
-  btnVoirPlus.addEventListener("click", function () {
-    if (textePlus.classList.contains("d-none")) {
-      textePlus.classList.remove("d-none");
-      btnVoirPlus.textContent = "Voir moins";
-    } else {
-      textePlus.classList.add("d-none");
-      btnVoirPlus.textContent = "Voir plus";
+document.querySelectorAll('a.nav-link[href^="#"]').forEach(function (link) {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  });
-
-
-  var contactForm = document.getElementById("contactForm");
-
-  contactForm.addEventListener("submit", function (event) {
-    event.preventDefault(); 
-
-    alert("Merci ! Votre message a été envoyé (simulation pour le mini-projet).");
-
-  
-    contactForm.reset();
   });
 });
